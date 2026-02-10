@@ -11,13 +11,12 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: ""
-      http:
-        paths: /
-        pathType: Prefix
-        backend:
-          service:
-            name: flipkart-svc
-            port:
-              number: 80
-
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flipkart-svc
+                port:
+                  number: 80
