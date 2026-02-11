@@ -76,6 +76,7 @@ module "iam_irsa" {
 }
 
 module "bastion" {
+  count  = var.enable_bastion ? 1 : 0
   source = "./modules/bastion"
 
   image_id                  = var.bastion_image_id
@@ -93,12 +94,14 @@ module "bastion" {
 
 # EKS Access Entry for Bastion
 resource "aws_eks_access_entry" "bastion" {
+  count = var.enable_bastion ? 1 : 0
   cluster_name  = module.eks.cluster_name
   principal_arn = module.iam_core.bastion_role_arn
   type          = "STANDARD"
 }
 
 resource "aws_eks_access_policy_association" "bastion_admin" {
+  count = var.enable_bastion ? 1 : 0
   cluster_name  = module.eks.cluster_name
   principal_arn = module.iam_core.bastion_role_arn
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
@@ -118,5 +121,5 @@ module "helm" {
   region                  = var.region
   alb_controller_role_arn = module.iam_irsa.alb_controller_role_arn
 
-  depends_on = [module.eks, module.vpc, module.iam_core, module.iam_irsa, module.bastion]
+  depends_on = [module.eks, module.vpc, module.iam_core, module.iam_irsa]
 }

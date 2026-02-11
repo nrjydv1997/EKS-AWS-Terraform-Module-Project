@@ -66,3 +66,8 @@ variable "tags" {
   description = "Common tags for resources"
   type        = map(string)
 }
+
+variable "enable_bastion" {
+  type    = bool
+  default = true
+}

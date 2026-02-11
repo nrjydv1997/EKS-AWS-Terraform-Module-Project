@@ -1,6 +1,5 @@
-
 output "bastion_public_ip" {
-  value = module.bastion.bastion_public_ip
+  value = try(module.bastion[0].bastion_public_ip, null)
 }
 
 output "eks_cluster_endpoint" {

@@ -21,9 +21,9 @@ min_capacity_on_demand     = 1
 max_capacity_on_demand     = 2
 
 spot_instance_types       = ["c7i-flex.large"]
-desired_capacity_on_spot = 2
-min_capacity_on_spot     = 2
-max_capacity_on_spot     = 10
+desired_capacity_on_spot = 1
+min_capacity_on_spot     = 1
+max_capacity_on_spot     = 2
 addons = [
   {
     name    = "vpc-cni",
@@ -60,4 +60,5 @@ tags = {
 }
 
 is_alb_controller_enabled = true
+enable_bastion = false
 
