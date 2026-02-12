@@ -63,3 +63,5 @@ is_alb_controller_enabled = true
 enable_bastion = false
 
 enable_cert_manager = true
+
+enable_nginx_ingress = true

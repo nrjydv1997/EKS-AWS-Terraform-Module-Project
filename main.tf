@@ -135,3 +135,13 @@ module "cert_manager" {
 
   depends_on = [module.eks]
 }
+
+#create nginx-ingress controller
+module "nginx_ingress" {
+  source = "./modules/nginx_ingress"
+
+  enable_nginx_ingress = var.enable_nginx_ingress
+  region               = var.region
+
+  depends_on = [module.eks]
+}
