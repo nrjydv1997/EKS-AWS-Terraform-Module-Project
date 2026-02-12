@@ -71,3 +71,8 @@ variable "enable_bastion" {
   type    = bool
   default = true
 }
+
+variable "enable_cert_manager" {
+  type    = bool
+  default = true
+}

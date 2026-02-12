@@ -123,3 +123,15 @@ module "helm" {
 
   depends_on = [module.eks, module.vpc, module.iam_core, module.iam_irsa]
 }
+
+
+module "cert_manager" {
+  source = "./modules/cert_manager"
+
+  cluster_name = module.eks.cluster_name
+  region       = var.region
+
+  enable_cert_manager = var.enable_cert_manager
+
+  depends_on = [module.eks]
+}
