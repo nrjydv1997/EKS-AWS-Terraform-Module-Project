@@ -143,5 +143,5 @@ module "nginx_ingress" {
   enable_nginx_ingress = var.enable_nginx_ingress
   region               = var.region
 
-  depends_on = [module.eks]
+  depends_on = [module.eks, module.aws_load_balancer_controller]
 }
